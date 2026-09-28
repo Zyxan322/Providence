@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { DonatePage } from "@/components/providence/catalog-pages";
+export const Route = createFileRoute("/donate")({ head: () => ({ meta: [{ title: "Support Providence" }, { name: "description", content: "Support Providence research, experimentation, educational initiatives and technology development." }, { property: "og:title", content: "Support the Future of Intelligence — Providence" }, { property: "og:description", content: "Help Providence build what comes next." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: DonatePage });

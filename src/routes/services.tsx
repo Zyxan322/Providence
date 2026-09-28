@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { ServicesPage } from "@/components/providence/catalog-pages";
+export const Route = createFileRoute("/services")({ head: () => ({ meta: [{ title: "AI & Technology Services — Providence" }, { name: "description", content: "AI models, intelligent systems, software, digital services and immersive technology by Providence." }, { property: "og:title", content: "AI & Technology Services — Providence" }, { property: "og:description", content: "Technology, built around you." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: ServicesPage });

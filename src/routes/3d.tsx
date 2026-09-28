@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { ThreePage } from "@/components/providence/three-experience";
+export const Route = createFileRoute("/3d")({ head: () => ({ meta: [{ title: "Providence 3D — The Web, in Another Dimension" }, { name: "description", content: "Immersive 3D websites, WebGL experiences, digital twins and spatial interfaces by Providence." }, { property: "og:title", content: "Providence 3D" }, { property: "og:description", content: "The web, in another dimension." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: ThreePage });

@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { ResearchPage } from "@/components/providence/catalog-pages";
+export const Route = createFileRoute("/research")({ head: () => ({ meta: [{ title: "Providence Research — Exploring What Comes Next" }, { name: "description", content: "Providence research across AI models, agents, machine learning, computer vision, 3D computing and automation." }, { property: "og:title", content: "Providence Research" }, { property: "og:description", content: "Exploring what comes next in intelligence and computing." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: ResearchPage });
