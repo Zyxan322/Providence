@@ -1,64 +1,56 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Volume2, VolumeX } from "lucide-react";
 import ambientMusic from "@/assets/providence-soundtrack.mp3";
 
-/**
- * BackgroundMusic — Completely invisible ambient audio engine
- * Respects browser autoplay policies and silently unlocks on the first user gesture.
- * Contains NO sticky, floating, or visible UI buttons per user requirement.
- */
 export function BackgroundMusic() {
   const ref = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const audio = ref.current;
     if (!audio) return;
 
     audio.volume = 0.35;
-
-    const playAudio = () => {
-      audio.play().catch(() => {
-        // Autoplay policy waiting for user interaction
-      });
-    };
-
-    // Attempt autoplay
-    playAudio();
-
-    // Auto-unlock on first user interaction anywhere
-    const unlock = () => {
-      if (audio.paused) {
-        playAudio();
-      }
-      window.removeEventListener("pointerdown", unlock);
-      window.removeEventListener("keydown", unlock);
-      window.removeEventListener("scroll", unlock);
-      window.removeEventListener("click", unlock);
-      window.removeEventListener("touchstart", unlock);
-    };
-
-    window.addEventListener("pointerdown", unlock, { passive: true });
-    window.addEventListener("keydown", unlock, { passive: true });
-    window.addEventListener("scroll", unlock, { passive: true });
-    window.addEventListener("click", unlock, { passive: true });
-    window.addEventListener("touchstart", unlock, { passive: true });
+    const handlePlaying = () => setIsPlaying(true);
+    const handlePause = () => setIsPlaying(false);
+    audio.addEventListener("playing", handlePlaying);
+    audio.addEventListener("pause", handlePause);
+    audio.play().catch(() => undefined);
 
     return () => {
-      window.removeEventListener("pointerdown", unlock);
-      window.removeEventListener("keydown", unlock);
-      window.removeEventListener("scroll", unlock);
-      window.removeEventListener("click", unlock);
-      window.removeEventListener("touchstart", unlock);
+      audio.removeEventListener("playing", handlePlaying);
+      audio.removeEventListener("pause", handlePause);
     };
   }, []);
 
   return (
-    <audio
-      ref={ref}
-      src={ambientMusic}
-      loop
-      preload="auto"
-      style={{ display: "none" }}
-      aria-hidden="true"
-    />
+    <>
+      <audio
+        ref={ref}
+        src={ambientMusic}
+        loop
+        preload="auto"
+        style={{ display: "none" }}
+        aria-hidden="true"
+      />
+      <button
+        type="button"
+        className="header-cart-btn"
+        aria-label={isPlaying ? "Pause background music" : "Play background music"}
+        aria-pressed={isPlaying}
+        title={isPlaying ? "Pause background music" : "Play background music"}
+        onClick={() => {
+          const audio = ref.current;
+          if (!audio) return;
+          if (audio.paused) {
+            audio.play().catch(() => setIsPlaying(false));
+          } else {
+            audio.pause();
+          }
+        }}
+      >
+        {isPlaying ? <Volume2 size={18} /> : <VolumeX size={18} />}
+      </button>
+    </>
   );
 }

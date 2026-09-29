@@ -12,7 +12,6 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Footer, Header, PageTransition } from "../components/providence/site";
-import { BackgroundMusic } from "../components/providence/music";
 import { CartProvider } from "../lib/cart-context";
 import { CartDrawer } from "../components/providence/cart-drawer";
 import { CheckoutModal } from "../components/providence/checkout-modal";
@@ -136,7 +135,6 @@ function RootComponent() {
         <CheckoutModal />
         <CourseDetailModal />
         <ServiceDetailModal />
-        <BackgroundMusic />
       </CartProvider>
     </QueryClientProvider>
   );

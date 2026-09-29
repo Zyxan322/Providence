@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from "re
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
 import { navItems, footerCategories, imagery, serviceGroups } from "@/lib/providence-data";
 import { Button } from "@/components/ui/button";
+import { BackgroundMusic } from "@/components/providence/music";
 import { useCart } from "@/lib/cart-context";
 import { courseCategories, coursesData } from "@/lib/courses-data";
 
@@ -94,6 +95,7 @@ export function Header() {
             <span className="header-cart-badge">{totalCount}</span>
           )}
         </button>
+        <BackgroundMusic />
         <Button asChild variant="outline" className="desktop-start hidden md:inline-flex border-white/15 bg-white/5 text-white hover:bg-white/10"><Link to="/contact">Contact Us</Link></Button>
         <Button asChild variant="premium" className="desktop-start gold-cta backdrop-blur-none"><Link to="/services">Get a Quote <ArrowRight /></Link></Button>
         <Button variant="iconGhost" size="icon" className="menu-button" aria-label="Open navigation" onClick={() => setOpen(true)}><Menu /></Button>
