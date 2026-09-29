@@ -1,11 +1,11 @@
-import { ArrowRight, Check, Plus, ShoppingBag } from "lucide-react";
+import { ArrowRight, Check, Eye, Plus } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart-context";
 import type { ServiceCard } from "@/lib/providence-data";
 
 export function ServiceSquareCard({ card }: { card: ServiceCard }) {
-  const { addService, isInCart, openCart } = useCart();
+  const { addService, isInCart, openCart, openServiceDetail } = useCart();
   const inCart = isInCart(card.id);
 
   const handleCartToggle = (e: React.MouseEvent) => {
@@ -44,6 +44,16 @@ export function ServiceSquareCard({ card }: { card: ServiceCard }) {
       </div>
 
       <div className="service-square-footer">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => openServiceDetail(card)}
+          className="service-cart-btn"
+          aria-label={`View details for ${card.title}`}
+        >
+          <Eye size={13} className="mr-1.5" /> View
+        </Button>
+
         <Button
           variant={inCart ? "secondary" : "outline"}
           size="sm"

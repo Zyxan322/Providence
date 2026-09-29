@@ -41,6 +41,9 @@ interface CartContextType {
   selectedCourse: Course | null;
   openCourseDetail: (course: Course) => void;
   closeCourseDetail: () => void;
+  selectedService: ServiceCard | null;
+  openServiceDetail: (service: ServiceCard) => void;
+  closeServiceDetail: () => void;
 }
 
 const CartContext = createContext<CartContextType | null>(null);
@@ -52,6 +55,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+  const [selectedService, setSelectedService] = useState<ServiceCard | null>(null);
   const [hydrated, setHydrated] = useState(false);
 
   // Load cart from localStorage on mount
@@ -170,6 +174,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const openCourseDetail = (course: Course) => setSelectedCourse(course);
   const closeCourseDetail = () => setSelectedCourse(null);
+  const openServiceDetail = (service: ServiceCard) => setSelectedService(service);
+  const closeServiceDetail = () => setSelectedService(null);
 
   return (
     <CartContext.Provider
@@ -196,6 +202,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
         selectedCourse,
         openCourseDetail,
         closeCourseDetail,
+        selectedService,
+        openServiceDetail,
+        closeServiceDetail,
       }}
     >
       {children}

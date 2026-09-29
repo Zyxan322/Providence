@@ -5,7 +5,7 @@ import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } fro
 import { navItems, footerCategories, imagery, serviceGroups } from "@/lib/providence-data";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart-context";
-import { coursesData } from "@/lib/courses-data";
+import { courseCategories, coursesData } from "@/lib/courses-data";
 
 export function Brand({ compact = false }: { compact?: boolean }) {
   return (
@@ -22,8 +22,18 @@ export function Brand({ compact = false }: { compact?: boolean }) {
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<"services" | "courses" | null>(null);
   const { totalCount, openCart } = useCart();
   const pathname = useRouterState({ select: s => s.location.pathname });
+  const serviceMenuItems = serviceGroups.slice(0, 4).map((group) => ({
+    label: group.title,
+    to: "/services",
+  }));
+  const courseMenuItems = courseCategories.filter((category) => category !== "All").slice(0, 5).map((category) => ({
+    label: category,
+    to: "/courses",
+  }));
+
   useEffect(() => {
     setOpen(false);
     const onScroll = () => setScrolled(window.scrollY > 36);
@@ -34,7 +44,42 @@ export function Header() {
     <div className="header-inner">
       <Brand />
       <nav className="desktop-nav" aria-label="Primary">
-        {navItems.map(([label, to]) => <Link key={to} to={to} activeOptions={{ exact: to === "/" }} activeProps={{ className: "active" }}>{label}</Link>)}
+        {navItems.map(([label, to]) => {
+          if (label === "Services" || label === "Courses") {
+            const menuItems = label === "Services" ? serviceMenuItems : courseMenuItems;
+            const dropdownKey = label.toLowerCase();
+            const isDropdownOpen = openDropdown === dropdownKey;
+
+            return (
+              <div
+                key={to}
+                className={`nav-dropdown ${isDropdownOpen ? "open" : ""}`}
+                onMouseEnter={() => setOpenDropdown(dropdownKey as "services" | "courses")}
+                onMouseLeave={() => setOpenDropdown(null)}
+                onFocus={() => setOpenDropdown(dropdownKey as "services" | "courses")}
+                onBlur={() => setOpenDropdown(null)}
+              >
+                <Link
+                  to={to}
+                  activeOptions={{ exact: to === "/" }}
+                  activeProps={{ className: "active" }}
+                  className="nav-link-trigger"
+                >
+                  {label}
+                </Link>
+                <div className="nav-dropdown-panel" role="menu" aria-label={`${label} menu`}>
+                  {menuItems.map((item) => (
+                    <Link key={`${label}-${item.label}`} to={item.to} className="nav-dropdown-link" role="menuitem">
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            );
+          }
+
+          return <Link key={to} to={to} activeOptions={{ exact: to === "/" }} activeProps={{ className: "active" }}>{label}</Link>;
+        })}
       </nav>
       <div className="header-actions">
         <button
@@ -49,6 +94,7 @@ export function Header() {
             <span className="header-cart-badge">{totalCount}</span>
           )}
         </button>
+        <Button asChild variant="outline" className="desktop-start hidden md:inline-flex border-white/15 bg-white/5 text-white hover:bg-white/10"><Link to="/contact">Contact Us</Link></Button>
         <Button asChild variant="premium" className="desktop-start gold-cta backdrop-blur-none"><Link to="/services">Get a Quote <ArrowRight /></Link></Button>
         <Button variant="iconGhost" size="icon" className="menu-button" aria-label="Open navigation" onClick={() => setOpen(true)}><Menu /></Button>
       </div>
@@ -73,6 +119,12 @@ export function Header() {
       </div>
       <nav aria-label="Mobile navigation">
         {navItems.map(([label, to], i) => <Link key={to} to={to} onClick={() => setOpen(false)}><span>0{i + 1}</span>{label}<ArrowRight /></Link>)}
+        <Link to="/contact" onClick={() => setOpen(false)} className="mobile-cart-link">
+          <div className="flex items-center gap-3">
+            <span className="text-signal font-medium">Contact Us</span>
+          </div>
+          <ArrowRight size={16} />
+        </Link>
         <button
           type="button"
           onClick={() => { setOpen(false); openCart(); }}

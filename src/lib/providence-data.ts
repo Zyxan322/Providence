@@ -65,6 +65,7 @@ export const navItems = [
   ["Vision", "/vision"],
   ["About", "/about"],
   ["Research", "/research"],
+  ["Contact", "/contact"],
   ["Donate", "/donate"],
 ] as const;
 

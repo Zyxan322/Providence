@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as R3dRouteImport } from './routes/3d'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as DonateRouteImport } from './routes/donate'
 import { Route as ResearchRouteImport } from './routes/research'
@@ -31,6 +32,11 @@ const R3dRoute = R3dRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CoursesRoute = CoursesRouteImport.update({
@@ -63,6 +69,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/3d': typeof R3dRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/donate': typeof DonateRoute
   '/research': typeof ResearchRoute
@@ -73,6 +80,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/3d': typeof R3dRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/donate': typeof DonateRoute
   '/research': typeof ResearchRoute
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/3d': typeof R3dRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/donate': typeof DonateRoute
   '/research': typeof ResearchRoute
@@ -96,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/3d'
     | '/about'
+    | '/contact'
     | '/courses'
     | '/donate'
     | '/research'
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/3d'
     | '/about'
+    | '/contact'
     | '/courses'
     | '/donate'
     | '/research'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/'
     | '/3d'
     | '/about'
+    | '/contact'
     | '/courses'
     | '/donate'
     | '/research'
@@ -127,6 +139,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   R3dRoute: typeof R3dRoute
   AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
   CoursesRoute: typeof CoursesRoute
   DonateRoute: typeof DonateRoute
   ResearchRoute: typeof ResearchRoute
@@ -155,6 +168,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/courses': {
@@ -199,6 +219,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R3dRoute: R3dRoute,
   AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
   CoursesRoute: CoursesRoute,
   DonateRoute: DonateRoute,
   ResearchRoute: ResearchRoute,

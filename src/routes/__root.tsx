@@ -17,6 +17,7 @@ import { CartProvider } from "../lib/cart-context";
 import { CartDrawer } from "../components/providence/cart-drawer";
 import { CheckoutModal } from "../components/providence/checkout-modal";
 import { CourseDetailModal } from "../components/providence/course-detail-modal";
+import { ServiceDetailModal } from "../components/providence/service-detail-modal";
 
 function NotFoundComponent() {
   return (
@@ -134,6 +135,7 @@ function RootComponent() {
         <CartDrawer />
         <CheckoutModal />
         <CourseDetailModal />
+        <ServiceDetailModal />
         <BackgroundMusic />
       </CartProvider>
     </QueryClientProvider>

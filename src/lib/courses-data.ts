@@ -223,6 +223,87 @@ export const coursesData: Course[] = [
       { module: "Module 4: UX Research & Handoff", lessons: ["Usability Testing & Feedback Loops", "Design Specs for React Engineers", "Portfolio Presentation"] }
     ]
   },
+  {
+    id: "graphic-design-digital-branding",
+    title: "Graphic Design & Digital Branding",
+    category: "Design & Digital",
+    shortDescription: "Learn branding, visual storytelling, typography, layout design, and portfolio-ready creative skills for digital work.",
+    description: "Build a practical creative skillset for modern digital careers. Learn logo systems, social media design, marketing assets, layout thinking, and the visual systems used in branding and product communication.",
+    level: "Beginner",
+    duration: "6 Weeks",
+    lessonsCount: 24,
+    price: 35,
+    originalPrice: 59,
+    rating: 4.7,
+    studentsCount: "1,120+",
+    image: imagery.designStudio,
+    whatYouLearn: [
+      "Brand identity foundations and visual storytelling",
+      "Typography systems and layout composition",
+      "Social media, poster, and marketing asset design",
+      "Building a portfolio-ready design workflow"
+    ],
+    curriculum: [
+      { module: "Module 1: Design Foundations", lessons: ["Color Theory & Visual Balance", "Typography & Hierarchy", "Composition & Layout Systems"] },
+      { module: "Module 2: Branding & Identity", lessons: ["Logo Concepts & Brand Kits", "Poster Design & Visual Consistency", "Marketing Materials for Digital Channels"] },
+      { module: "Module 3: Portfolio Practice", lessons: ["Design Critiques & Iteration", "Case Studies for Clients", "Preparing Creative Work for Clients"] },
+      { module: "Module 4: Real-world Delivery", lessons: ["Templates & Export Workflows", "Client Communication Basics", "Portfolio Presentation"] }
+    ]
+  },
+  {
+    id: "python-beginners-automation",
+    title: "Python for Beginners & Automation",
+    category: "Programming",
+    shortDescription: "Start with Python fundamentals, automation, scripting, and practical problem solving for tech careers.",
+    description: "Python is one of the most useful starting points for learners entering IT and digital work. This course covers syntax, programming fundamentals, automation tasks, basic data handling, and real coding confidence.",
+    level: "Beginner",
+    duration: "7 Weeks",
+    lessonsCount: 26,
+    price: 39,
+    originalPrice: 69,
+    rating: 4.8,
+    studentsCount: "2,430+",
+    image: imagery.softwareStudio,
+    whatYouLearn: [
+      "Variables, loops, conditions, and functions in Python",
+      "Automating repetitive tasks with scripts",
+      "Working with files, APIs, and data processing",
+      "Building a beginner portfolio project"
+    ],
+    curriculum: [
+      { module: "Module 1: Python Foundations", lessons: ["Variables & Data Types", "Control Flow & Functions", "Debugging Basics"] },
+      { module: "Module 2: Data Handling", lessons: ["Lists, Dictionaries & Files", "Text Processing", "Basic Data Analysis"] },
+      { module: "Module 3: Automation", lessons: ["Web Automation", "File Operations", "Simple Tools & Scripts"] },
+      { module: "Module 4: Capstone Project", lessons: ["Create a Task Automation Tool", "Code Review & Feedback", "Portfolio Showcase"] }
+    ]
+  },
+  {
+    id: "unity-game-development",
+    title: "Game Development with Unity",
+    category: "3D & Immersive",
+    shortDescription: "Create playable games, game mechanics, character systems, and interactive experiences using Unity.",
+    description: "Explore the foundations of game development with Unity. Learn scene setup, player controls, gameplay systems, UI, animation basics, and how to build a simple but polished interactive game project.",
+    level: "Beginner",
+    duration: "8 Weeks",
+    lessonsCount: 30,
+    price: 49,
+    originalPrice: 79,
+    rating: 4.9,
+    studentsCount: "940+",
+    image: imagery.gameWorld,
+    whatYouLearn: [
+      "Unity editor workflow and project setup",
+      "Player movement, camera controllers, and interactions",
+      "Game design logic and user interface fundamentals",
+      "Publishing a simple game prototype"
+    ],
+    curriculum: [
+      { module: "Module 1: Game Concepts", lessons: ["Game Design Basics", "Player Experience & Goals", "Scene Building"] },
+      { module: "Module 2: Mechanics & Interactions", lessons: ["Movement & Controls", "Collision & Physics", "UI & Feedback Loop"] },
+      { module: "Module 3: World Building", lessons: ["Level Design Basics", "Animations & Effects", "Enemy / NPC Behavior"] },
+      { module: "Module 4: Final Prototype", lessons: ["Polish & Playtesting", "Build a Simple Game Project", "Portfolio Presentation"] }
+    ]
+  },
 
   // ── Crypto & Blockchain ────────────────────────────────────────────
   {
