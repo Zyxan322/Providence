@@ -65,7 +65,7 @@ export function CourseCard({ course }: { course: Course }) {
             <Button
               variant="outline"
               size="sm"
-              className="bg-transparent text-white border-white/20 hover:bg-white/10 hidden sm:flex"
+              className="bg-transparent text-white border-white/20 hover:bg-white/10"
               onClick={() => openCourseDetail(course)}
               aria-label={`View details for ${course.title}`}
             >

@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { ArrowRight, Menu, X, ShoppingBag } from "lucide-react";
-import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
+import { Fragment, useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
 import { navItems, footerCategories, imagery, serviceGroups } from "@/lib/providence-data";
 import { Button } from "@/components/ui/button";
@@ -10,11 +10,11 @@ import { courseCategories, coursesData } from "@/lib/courses-data";
 
 export function Brand({ compact = false }: { compact?: boolean }) {
   return (
-    <Link to="/" className="brand" aria-label="Providence — The AI Society, home">
-      <img src={imagery.logo} alt="Providence" width={44} height={44} className="brand-logo" />
+    <Link to="/" className="brand" aria-label="Providence AI — Self Engineered, home">
+      <img src={imagery.logo} alt="Providence AI" width={44} height={44} className="brand-logo" />
       <span className={compact ? "sr-only" : "brand-lockup"}>
-        <strong>PROVIDENCE</strong>
-        <small>THE AI SOCIETY</small>
+        <strong>PROVIDENCE AI</strong>
+        <small>SELF ENGINEERED</small>
       </span>
     </Link>
   );
@@ -97,7 +97,7 @@ export function Header() {
         </button>
         <BackgroundMusic />
         <Button asChild variant="outline" className="desktop-start hidden md:inline-flex border-white/15 bg-white/5 text-white hover:bg-white/10"><Link to="/contact">Contact Us</Link></Button>
-        <Button asChild variant="premium" className="desktop-start gold-cta backdrop-blur-none"><Link to="/services">Get a Quote <ArrowRight /></Link></Button>
+        <Button asChild variant="premium" className="desktop-start gold-cta backdrop-blur-none"><Link to="/join">Join Us <ArrowRight /></Link></Button>
         <Button variant="iconGhost" size="icon" className="menu-button" aria-label="Open navigation" onClick={() => setOpen(true)}><Menu /></Button>
       </div>
     </div>
@@ -124,6 +124,12 @@ export function Header() {
         <Link to="/contact" onClick={() => setOpen(false)} className="mobile-cart-link">
           <div className="flex items-center gap-3">
             <span className="text-signal font-medium">Contact Us</span>
+          </div>
+          <ArrowRight size={16} />
+        </Link>
+        <Link to="/join" onClick={() => setOpen(false)} className="mobile-cart-link">
+          <div className="flex items-center gap-3">
+            <span className="text-signal font-medium">Join Us</span>
           </div>
           <ArrowRight size={16} />
         </Link>
@@ -226,12 +232,68 @@ export function PageTransition({ children }: { children: ReactNode }) {
   return <motion.main key={pathname} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, ease: [0.22, 1, 0.36, 1] }}>{children}</motion.main>;
 }
 
+const textRevealContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.025 } },
+};
+
+const textRevealWord = {
+  hidden: { opacity: 0, y: 7 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.24, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const characterRevealContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.018 } },
+};
+
+const characterReveal = {
+  hidden: { opacity: 0, y: 4 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.16, ease: "easeOut" } },
+};
+
+export function ScrollTypingText({ text, characters = false }: { text: string; characters?: boolean }) {
+  const words = text.split(/\s+/);
+
+  return (
+    <>
+      <span className="sr-only">{text}</span>
+      <motion.span
+        aria-hidden="true"
+        className="scroll-typing-text inline"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.65 }}
+        variants={textRevealContainer}
+      >
+        {words.map((word, wordIndex) => (
+          <Fragment key={`${word}-${wordIndex}`}>
+            <motion.span
+              className="inline-block whitespace-nowrap"
+              variants={characters ? characterRevealContainer : textRevealWord}
+            >
+              {characters
+                ? Array.from(word).map((character, characterIndex) => (
+                    <motion.span key={`${character}-${characterIndex}`} className="inline-block" variants={characterReveal}>
+                      {character}
+                    </motion.span>
+                  ))
+                : word}
+            </motion.span>
+            {wordIndex < words.length - 1 ? " " : null}
+          </Fragment>
+        ))}
+      </motion.span>
+    </>
+  );
+}
+
 export function PageHero({ label, title, description, image }: { label: string; title: string; description: string; image: string }) {
-  return <section className="page-hero"><motion.img src={image} alt="" width={1920} height={1080} initial={{ scale: 1.06 }} animate={{ scale: 1 }} transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }} /><div className="image-shade" /><motion.div className="page-hero-content" initial={{ opacity: 0, y: 36 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .9, delay: .15, ease: [0.22, 1, 0.36, 1] }}><p className="eyebrow">{label}</p><h1>{title}</h1><p className="lede">{description}</p></motion.div><span className="chapter-index">01 / PROVIDENCE</span></section>;
+  return <section className="page-hero"><motion.img src={image} alt="" width={1920} height={1080} initial={{ scale: 1.06 }} animate={{ scale: 1 }} transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }} /><div className="image-shade" /><motion.div className="page-hero-content" initial={{ opacity: 0, y: 36 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .9, delay: .15, ease: [0.22, 1, 0.36, 1] }}><p className="eyebrow">{label}</p><h1><ScrollTypingText text={title} characters /></h1><p className="lede"><ScrollTypingText text={description} /></p></motion.div><span className="chapter-index">01 / PROVIDENCE</span></section>;
 }
 
 export function SectionIntro({ label, title, copy, light = false }: { label: string; title: string; copy: string; light?: boolean }) {
-  return <motion.div className={`section-intro ${light ? "light" : ""}`} initial={{ opacity: 0, y: 42 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .75, ease: [0.22, 1, 0.36, 1] }}><p className="eyebrow">{label}</p><h2>{title}</h2><p>{copy}</p></motion.div>;
+  return <motion.div className={`section-intro ${light ? "light" : ""}`} initial={{ opacity: 0, y: 42 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .75, ease: [0.22, 1, 0.36, 1] }}><p className="eyebrow">{label}</p><h2><ScrollTypingText text={title} characters /></h2><p><ScrollTypingText text={copy} /></p></motion.div>;
 }
 
 export function TiltCard({

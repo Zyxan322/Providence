@@ -15,6 +15,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as DonateRouteImport } from './routes/donate'
+import { Route as JoinRouteImport } from './routes/join'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as VisionRouteImport } from './routes/vision'
@@ -49,6 +50,11 @@ const DonateRoute = DonateRouteImport.update({
   path: '/donate',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JoinRoute = JoinRouteImport.update({
+  id: '/join',
+  path: '/join',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResearchRoute = ResearchRouteImport.update({
   id: '/research',
   path: '/research',
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/donate': typeof DonateRoute
+  '/join': typeof JoinRoute
   '/research': typeof ResearchRoute
   '/services': typeof ServicesRoute
   '/vision': typeof VisionRoute
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/donate': typeof DonateRoute
+  '/join': typeof JoinRoute
   '/research': typeof ResearchRoute
   '/services': typeof ServicesRoute
   '/vision': typeof VisionRoute
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/donate': typeof DonateRoute
+  '/join': typeof JoinRoute
   '/research': typeof ResearchRoute
   '/services': typeof ServicesRoute
   '/vision': typeof VisionRoute
@@ -108,6 +117,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/courses'
     | '/donate'
+    | '/join'
     | '/research'
     | '/services'
     | '/vision'
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/courses'
     | '/donate'
+    | '/join'
     | '/research'
     | '/services'
     | '/vision'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/courses'
     | '/donate'
+    | '/join'
     | '/research'
     | '/services'
     | '/vision'
@@ -142,6 +154,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CoursesRoute: typeof CoursesRoute
   DonateRoute: typeof DonateRoute
+  JoinRoute: typeof JoinRoute
   ResearchRoute: typeof ResearchRoute
   ServicesRoute: typeof ServicesRoute
   VisionRoute: typeof VisionRoute
@@ -191,6 +204,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DonateRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/join': {
+      id: '/join'
+      path: '/join'
+      fullPath: '/join'
+      preLoaderRoute: typeof JoinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/research': {
       id: '/research'
       path: '/research'
@@ -222,6 +242,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CoursesRoute: CoursesRoute,
   DonateRoute: DonateRoute,
+  JoinRoute: JoinRoute,
   ResearchRoute: ResearchRoute,
   ServicesRoute: ServicesRoute,
   VisionRoute: VisionRoute,

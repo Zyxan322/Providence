@@ -222,7 +222,7 @@ export const serviceGroups = [
   { title: "SOFTWARE & DIGITAL PRODUCTS", image: softwareStudio, items: ["Custom Software", "Web Development", "Mobile Development", "SaaS Development", "API Development", "Backend Systems", "Cloud Solutions", "Business Automation"] },
   { title: "3D & IMMERSIVE TECHNOLOGY", image: heroFuture, items: ["3D Websites", "Three.js", "WebGL", "Interactive Experiences", "Digital Twins", "3D Product Experiences"] },
   { title: "GAMING TECHNOLOGY", image: gameWorld, items: ["Game Development", "Game AI", "Unity", "Unreal Engine", "Interactive Systems"] },
-  { title: "CREATIVE & DIGITAL", image: designStudio, items: ["UI/UX Design", "Graphic Design", "Motion Graphics", "Digital Content", "Digital Marketing", "SEO"] },
+  { title: "CREATIVE & DIGITAL", image: designStudio, items: ["UI/UX Design", "Graphic Design", "Motion Graphics", "Digital Content", "Digital Marketing", "Social Media Marketing", "SEO"] },
   { title: "CRYPTO & BLOCKCHAIN", image: blockchainNetwork, items: ["Blockchain Education", "Crypto Training", "Web3 Fundamentals", "Blockchain Development Concepts", "Digital Asset Technology Education"] },
 ];
 

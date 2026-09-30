@@ -600,6 +600,14 @@ p {
    color: oklch(.42 .025 255);
 }
 
+@media (prefers-reduced-motion: reduce) {
+   .scroll-typing-text,
+   .scroll-typing-text * {
+      opacity: 1 !important;
+      transform: none !important;
+   }
+}
+
 .card-grid,
 .catalog-grid,
 .research-grid {

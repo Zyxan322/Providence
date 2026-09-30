@@ -236,7 +236,7 @@ export const coursesData: Course[] = [
     originalPrice: 59,
     rating: 4.7,
     studentsCount: "1,120+",
-    image: imagery.designStudio,
+    image: imagery.digitalSolutions,
     whatYouLearn: [
       "Brand identity foundations and visual storytelling",
       "Typography systems and layout composition",
@@ -248,6 +248,33 @@ export const coursesData: Course[] = [
       { module: "Module 2: Branding & Identity", lessons: ["Logo Concepts & Brand Kits", "Poster Design & Visual Consistency", "Marketing Materials for Digital Channels"] },
       { module: "Module 3: Portfolio Practice", lessons: ["Design Critiques & Iteration", "Case Studies for Clients", "Preparing Creative Work for Clients"] },
       { module: "Module 4: Real-world Delivery", lessons: ["Templates & Export Workflows", "Client Communication Basics", "Portfolio Presentation"] }
+    ]
+  },
+  {
+    id: "social-media-marketing",
+    title: "Social Media Marketing & Strategy",
+    category: "Design & Digital",
+    shortDescription: "Plan social campaigns, create platform-ready content, grow engaged audiences, and measure performance.",
+    description: "Build a practical social media marketing workflow from strategy through reporting. Learn how to define audiences, plan platform-specific content, manage campaigns, and use analytics to improve reach, engagement, and conversions.",
+    level: "Beginner",
+    duration: "6 Weeks",
+    lessonsCount: 24,
+    price: 39,
+    originalPrice: 65,
+    rating: 4.8,
+    studentsCount: "860+",
+    image: imagery.technologyEcosystem,
+    whatYouLearn: [
+      "Build audience profiles and measurable social media goals",
+      "Create a content calendar and platform-specific campaigns",
+      "Use organic and paid social tactics to improve reach and engagement",
+      "Read campaign analytics and turn results into next steps"
+    ],
+    curriculum: [
+      { module: "Module 1: Social Strategy & Audience", lessons: ["Platform Selection & Audience Research", "Brand Voice and Social Goals", "Content Audit & Competitor Insights"] },
+      { module: "Module 2: Content Planning & Creation", lessons: ["Content Pillars & Editorial Calendars", "Short-form Video and Visual Content", "Writing Platform-ready Captions"] },
+      { module: "Module 3: Campaigns & Community", lessons: ["Organic Campaign Planning", "Paid Social Campaign Fundamentals", "Community Management & Creator Partnerships"] },
+      { module: "Module 4: Analytics & Capstone", lessons: ["Reach, Engagement & Conversion Metrics", "Reporting and Campaign Optimization", "Build a Complete Social Campaign"] }
     ]
   },
   {

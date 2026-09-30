@@ -102,7 +102,9 @@ export function ServicesPage() {
                 <ServiceCard
                   key={item}
                   title={item.toUpperCase()}
-                  description={`Focused ${item.toLowerCase()} engineered for performance, scale and meaningful outcomes.`}
+                  description={item === "Social Media Marketing"
+                    ? "Social strategy, platform-ready content, campaign management and performance reporting to grow your audience and reach measurable goals."
+                    : `Focused ${item.toLowerCase()} engineered for performance, scale and meaningful outcomes.`}
                   image={image}
                   meta={`${String(i + 1).padStart(2,"0")} / ${group.title}`}
                   tag={group.title.split(" ")[0]}
@@ -404,6 +406,39 @@ export function AboutPage() {
         </div>
       </section>
 
+      <section className="dark-section py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <SectionIntro
+            label="OUR DISCIPLINES / CONNECTED BY DESIGN"
+            title="One ecosystem. Many ways to build what comes next."
+            copy="Providence connects research, engineering, immersive technology and education so people can move from understanding an idea to making it real."
+          />
+          <div className="grid gap-5 sm:grid-cols-2">
+            {[
+              { number: "01", title: "Intelligent systems", text: "Explore AI, machine learning and autonomous systems through research and applied engineering.", image: imagery.heroModels, to: "/research", action: "Explore research" },
+              { number: "02", title: "Digital products", text: "Turn ambitious ideas into useful software, web experiences and dependable digital products.", image: imagery.softwareStudio, to: "/services", action: "Explore services" },
+              { number: "03", title: "Immersive technology", text: "Make digital spaces tangible with interactive 3D, WebGL and spatial experiences.", image: imagery.immersive3d, to: "/3d", action: "Enter 3D experience" },
+              { number: "04", title: "Learning & capability", text: "Build practical skills in AI, software, design and emerging technology through structured learning.", image: imagery.educationLab, to: "/courses", action: "Explore courses" },
+            ].map((discipline) => (
+              <article key={discipline.number} className="group grid overflow-hidden border border-white/10 bg-white/[0.025] sm:grid-cols-[0.8fr_1.2fr]">
+                <div className="relative min-h-52 overflow-hidden">
+                  <img src={discipline.image} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent" />
+                  <span className="absolute bottom-4 left-4 text-xs font-semibold tracking-[0.16em] text-white/80">FIELD / {discipline.number}</span>
+                </div>
+                <div className="flex flex-col items-start p-6 md:p-8">
+                  <h3 className="text-2xl font-bold text-white font-display">{discipline.title}</h3>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-white/65">{discipline.text}</p>
+                  <Link to={discipline.to} className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-signal">
+                    {discipline.action} <ArrowRight size={16} />
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="dark-section py-20">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <div className="grid gap-8 lg:grid-cols-2">
@@ -515,6 +550,31 @@ export function AboutPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="light-section py-20 md:py-28">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 md:px-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p className="eyebrow">STEP INSIDE / PROVIDENCE 3D</p>
+            <h3 className="text-3xl font-bold leading-tight text-[#111] font-display md:text-5xl">Experience the web from another dimension.</h3>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-black/65">
+              Our 3D experience brings Providence’s work to life through an interactive environment. Explore how spatial design, real-time technology and purposeful storytelling can change the way people connect with digital products.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button asChild variant="premium" size="lg">
+                <Link to="/3d">Explore the 3D experience <ArrowRight className="ml-2" /></Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="border-black/20 bg-transparent text-black hover:bg-black/5">
+                <Link to="/services">Build with Providence</Link>
+              </Button>
+            </div>
+          </div>
+          <Link to="/3d" aria-label="Open the Providence 3D experience" className="group relative block min-h-[320px] overflow-hidden bg-black md:min-h-[440px]">
+            <img src={imagery.immersive3d} alt="Abstract immersive 3D environment" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+            <span className="absolute bottom-5 left-5 inline-flex items-center gap-2 text-sm font-semibold text-white">ENTER / 3D <ArrowRight size={16} /></span>
+          </Link>
         </div>
       </section>
 
